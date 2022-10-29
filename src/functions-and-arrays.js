@@ -47,36 +47,24 @@ function sumNumbers(array) {
 }
 
 // Iteration #3.2 Bonus:
-const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
+const mixedArr = [6, 12, 'miami', , [1,1], 1, true, 'barca', '200', 'lisboa', 8, 10];
 
 function sum(array) {
-  let sum = 0;
+  let sum1 = 0;
   if (array.length === 0) {
-    return 0
+    return 0;
   }
-    for (let i=0; i<array.length;i++) {
-      try{
-        if(typeof array[i] =="string") sum+=array[i].length;
-        if(typeof array[i] == "boolean") sum += +array[i];
-        if(typeof array[i] == "number") sum += array[i];
-        if(typeof array[i] == "object" || typeof array[i] == "null" || typeof array[i] == "undefined") throw "Unsupported data type sir"
-      }
-      catch(err){
-        console.log(err);
-      }
-      /* if(typeof array[i] == "string") {
-        sum += array[i].length
-      }else if(typeof array[i] == "boolean"){
-        sum += +array[i]
-      }else if(typeof array[i] == "number"){
-        sum += array[i]
-      }else{
-        throw "Unsupported data type sir" 
-      } */
+  for (let i = 0; i < array.length; i++) {
+      if (typeof array[i] == "string") sum1 += array[i].length;
+      if (typeof array[i] == "boolean") sum1 += +array[i];
+      if (typeof array[i] == "number") sum1 += array[i];
+      if(typeof array[i] == "object") throw new Error("Unsupported data type sir or ma'am");
   }
 
-  return sum;
+  return sum1;
 }
+
+console.log(sum(mixedArr))
 
 // Iteration #4: Calculate the average
 // Level 1: Array of numbers
@@ -116,9 +104,9 @@ function averageWordLength(array) {
 // Bonus - Iteration #4.1
 function avg(array) {
   if (array.length === 0) {
-    return 0
+    return null
   }
-
+  return sum(array)/array.length
   
 }
 
@@ -139,12 +127,12 @@ const wordsUnique = [
 
 function uniquifyArray(array) {
   let newArr = [];
-  if (array.length == 0) {
+  if (array.length === 0) {
     return null;
   }
   for (i in array) {
-    if (newArr.indexOf(array[i]) == -1) {
-      sum += array[i];
+    if (!newArr.includes(array[i])) {
+      newArr.push(array[i]);
     }
   }
   return newArr;
@@ -267,11 +255,80 @@ const matrix = [
   ],
 ];
 
-function greatestProduct() {}
+console.log(greatestProduct(matrix))
+
+function greatestProduct(twoDemArray) {
+  //inorder to find the four numbers later, 
+  //I keep the positions on the console
+  let theGretestFourNumbers = []
+  let positionsOfTheFourGreats = []
+  let fourNumbers = []
+  let product = 1
+
+  //since it's square, we could assume the size doesn't change for both dimension. 
+  let squareSize = twoDemArray[0].length
+
+
+  // loop horizontally
+
+  for(i in twoDemArray){
+    for(let j = 0;j <(squareSize-3);j++){
+      fourNumbers = twoDemArray[i].slice(j,j+4)
+      if(multiplyNumbers(fourNumbers)>product){
+        product= multiplyNumbers(fourNumbers)
+        theGretestFourNumbers = fourNumbers
+        positionsOfTheFourGreats=[]
+        positionsOfTheFourGreats.push([i,j])
+        positionsOfTheFourGreats.push([i,j+1])
+        positionsOfTheFourGreats.push([i,j+2])
+        positionsOfTheFourGreats.push([i,j+3])
+      }
+    }
+  }
+
+  // loop vertically
+  for(let i=0; i<(squareSize-3);i++){
+    for(let j = 0;j <(squareSize-3);j++){
+      // this part is not very pretty
+      // it could be better if we have a transpose function. 
+      fourNumbers[0] = twoDemArray[i][j]
+      fourNumbers[1] = twoDemArray[i+1][j]
+      fourNumbers[2] = twoDemArray[i+2][j]
+      fourNumbers[3] = twoDemArray[i+3][j]
+      if(multiplyNumbers(fourNumbers)>product){
+        product= multiplyNumbers(fourNumbers)
+        theGretestFourNumbers = fourNumbers
+        positionsOfTheFourGreats=[]
+        positionsOfTheFourGreats.push([i,j])
+        positionsOfTheFourGreats.push([i,j+1])
+        positionsOfTheFourGreats.push([i,j+2])
+        positionsOfTheFourGreats.push([i,j+3])
+      }
+  }
+}
+console.log(`the greatest production is ${product},
+it's the result of the four numbers: ${theGretestFourNumbers}
+their positions are: 
+ ${positionsOfTheFourGreats[0]}
+ ${positionsOfTheFourGreats[1]}
+ ${positionsOfTheFourGreats[2]}
+ ${positionsOfTheFourGreats[3]}`)
+
+return product
+}
+
+function multiplyNumbers(array){
+  let product = 1
+  for(i in array){
+    product = product* array[i]
+  }
+  return product
+}
+
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
-if (typeof module !== "undefined") {
+if (typeof module !== 'undefined') {
   module.exports = {
     maxOfTwoNumbers,
     findLongestWord,
@@ -283,6 +340,6 @@ if (typeof module !== "undefined") {
     uniquifyArray,
     doesWordExist,
     howManyTimes,
-    greatestProduct,
+    greatestProduct
   };
 }
