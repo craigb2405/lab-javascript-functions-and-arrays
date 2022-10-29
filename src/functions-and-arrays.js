@@ -29,7 +29,9 @@ const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard',
 
 
 
-// Iteration #3: Calculate the sum
+// Iteration #3: 
+
+// #3.2 Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
 function sumNumbers(array) {
@@ -43,7 +45,7 @@ function sumNumbers(array) {
 
 
 
-// Iteration #3.1 Bonus:
+// Iteration #3.2 Bonus:
 function sum() {}
 
 
@@ -52,14 +54,27 @@ function sum() {}
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(array) {
+  if (array.length == 0){
+    return null}
+  else return sumNumbers(array)/array.length
+}
 
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
-
+function averageWordLength(array) {
+  let wordlength = [];
+  if (array.length == 0){
+    return null}
+  else{
+    for(i in array){
+      wordlength.push(array[i].length)
+    }
+  }
+  return averageNumbers(wordlength)
+} 
 // Bonus - Iteration #4.1
 function avg() {}
 
@@ -78,14 +93,31 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
+function uniquifyArray(array) {
+  let newArr = []
+  if (array.length == 0){
+    return null}
+  for (i in array){
+    if (newArr.indexOf(array[i]) == -1){
+      newArr.push(array[i])
+    }
+  }
+  return newArr
+}
 
 
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
+function doesWordExist(array, word) {
+  if (array.length == 0){
+    return null}
+  if (array.indexOf(word) == -1) {
+    return false
+  } 
+  return true
+}
 
 
 
@@ -104,7 +136,18 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(array, word) {
+  let count = 0
+  if (array.length == 0){
+    return 0}
+  for (i in array){
+    if (word == array[i]){
+      count ++
+    }
+  }
+
+  return count
+}
 
 
 
