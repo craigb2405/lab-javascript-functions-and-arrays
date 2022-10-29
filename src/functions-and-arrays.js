@@ -31,7 +31,7 @@ const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard',
 
 // Iteration #3: 
 
-// #3.2 Calculate the sum
+// #3.1 Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
 function sumNumbers(array) {
@@ -46,7 +46,26 @@ function sumNumbers(array) {
 
 
 // Iteration #3.2 Bonus:
-function sum() {}
+function sum(array) {
+  let sumString = 0
+  for (i in array) {
+    if (typeof array[i] === "string"){
+     sumString += array[i].length
+    } 
+    
+    else if (typeof array[i] === "number"){
+      sumString += array[i]
+     } 
+     
+     else if (typeof array[i] === "boolean"){
+      sumString += array[i]
+     } 
+     else {
+       
+     }
+    }
+  return sumString
+}
 
 
 
@@ -76,7 +95,12 @@ function averageWordLength(array) {
   return averageNumbers(wordlength)
 } 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(array) {
+
+  if (array.length == 0){
+    return null
+}
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
