@@ -14,7 +14,7 @@ function maxOfTwoNumbers(num1, num2) {
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
  function findLongestWord(array){
-  let container = "a"
+  let container = ""
   if (array.length == 0){
     return null
   }
@@ -60,8 +60,8 @@ function sum(array) {
      else if (typeof array[i] === "boolean"){
       sumString += array[i]
      } 
-     else {
-       
+     else  if (typeof array[i] === "object"){
+       throw new Error ("Unsupported data type sir or ma'am")
      }
     }
   return sumString
