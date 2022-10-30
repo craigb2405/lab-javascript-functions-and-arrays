@@ -10,19 +10,12 @@ function maxOfTwoNumbers(num1, num2) {
 }
 
 // Iteration #2: Find longest word
-const words = [
-  "mystery",
-  "brother",
-  "aviator",
-  "crocodile",
-  "pearl",
-  "orchard",
-  "crackpot",
-];
-function findLongestWord(array) {
-  let container = "a";
-  if (array.length == 0) {
-    return null;
+
+const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
+ function findLongestWord(array){
+  let container = ""
+  if (array.length == 0){
+    return null
   }
   for (let i = 0; i < array.length; i++) {
     if (array[i].length > container.length) {
@@ -34,7 +27,7 @@ function findLongestWord(array) {
 
 // Iteration #3:
 
-// #3.2 Calculate the sum
+// #3.1 Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
 function sumNumbers(array) {
@@ -47,9 +40,31 @@ function sumNumbers(array) {
 }
 
 // Iteration #3.2 Bonus:
+
 const mixedArr = [6, 12, 'miami', , [1,1], 1, true, 'barca', '200', 'lisboa', 8, 10];
 
 function sum(array) {
+  let sumString = 0
+  for (i in array) {
+    if (typeof array[i] === "string"){
+     sumString += array[i].length
+    } 
+    
+    else if (typeof array[i] === "number"){
+      sumString += array[i]
+     } 
+     
+     else if (typeof array[i] === "boolean"){
+      sumString += array[i]
+     } 
+     else  if (typeof array[i] === "object"){
+       throw new Error ("Unsupported data type sir or ma'am")
+     }
+    }
+  return sumString
+}
+//shengwei's solution under. it's basicly the same thing
+/* function sum(array) {
   let sum1 = 0;
   if (array.length === 0) {
     return 0;
@@ -62,7 +77,7 @@ function sum(array) {
   }
 
   return sum1;
-}
+} */
 
 console.log(sum(mixedArr))
 
@@ -102,12 +117,14 @@ function averageWordLength(array) {
   return averageNumbers(wordlength);
 }
 // Bonus - Iteration #4.1
+
+//craig, since you didn't finish this one, I kept mine
+
 function avg(array) {
   if (array.length === 0) {
     return null
   }
   return sum(array)/array.length
-  
 }
 
 // Iteration #5: Unique arrays
