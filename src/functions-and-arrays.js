@@ -118,7 +118,7 @@ function averageWordLength(array) {
 }
 // Bonus - Iteration #4.1
 
-//craig, since you didn't finish this one, I kept mine
+//shengwei's solution
 
 function avg(array) {
   if (array.length === 0) {
